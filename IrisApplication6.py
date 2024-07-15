@@ -13,19 +13,20 @@ class Marvellous_KNN():
         self.TrainigTarget = TrainingTarget
 
     def predict(self, TestData):
-        prediction = []
+        predictions = []
         for row in TestData:
-            lebel = self.append(lebel)
-        return prediction
+            lebel = self.closest(row)
+            predictions.append(lebel)
+        return predictions
     
     def closest(self,row):
-        bestdistance = euc(row, self.TrainingData[0])
+        bestdistance = euc(row, self.TrainigData[0])
         bestindex = 0
         for i in range(1, len(self.TrainigData)):
             dist = euc(row, self.TrainigData[i])
             if dist < bestdistance:
                 bestdistance = dist
-                bestindex = 1
+                bestindex = i
         return self.TrainigTarget[bestindex]
     
 def Marvellous_KNeighbhor():
@@ -66,9 +67,9 @@ def Marvellous_KNeighbhor():
 
     classifier = Marvellous_KNN()
     classifier.fit(data_train,target_train)
-    prediction = classifier.predict(data_test)
+    predictions = classifier.predict(data_test)
 
-    Accuracy = accuracy_score(target_test,prediction)
+    Accuracy = accuracy_score(target_test,predictions)
     return Accuracy
 
 def main():
